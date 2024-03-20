@@ -163,4 +163,4 @@ class MessageMock():
 
     chat = ChatMock()
 
-    data = f"show_answer_{chat.id}_{TEST_QUESTION_RESPONSE['values'][0][2]}_"
+    data = f"show_answer_{chat.id}_latin_{TEST_QUESTION_NUMBER}"

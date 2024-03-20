@@ -21,7 +21,8 @@ class Scheduler:
 
     def clear_file_task(self):
         ''' Clear file task '''
-        open(self.config['log_filename'], 'w', encoding='utf-8').close()
+        with open(self.config['log_filename'], 'w', encoding='utf-8') as file:
+            file.close()
 
 
     def cancel(self):

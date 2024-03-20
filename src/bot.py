@@ -63,7 +63,7 @@ class Bot:
 
     def question(self, message, subject):
         ''' "question" command handler '''
-        
+
         logging.info('Question command requested on %s.', subject)
 
         chat_id = message.chat.id
@@ -80,7 +80,7 @@ class Bot:
 
             answer_btn = self.types.InlineKeyboardButton(
                 text=self.txt['showAnswerMsg'],
-                callback_data=f"show_answer_{chat_id}_{question['answer']}_{question['answer_image']}"
+                callback_data=f"show_answer_{chat_id}_{subject}_{question_number}"
             )
 
             markup.add(answer_btn)
@@ -92,7 +92,7 @@ class Bot:
                     caption=f"{question['category']}: {question['question']}",
                     reply_markup = markup
                 )
- 
+
             return self.bot.send_message(
                 chat_id,
                 f"{question['category']}: {question['question']}",
@@ -127,18 +127,20 @@ class Bot:
 
         splitted_data = message.data.split('_')
         chat = int(splitted_data[2])
-        answer = splitted_data[3]
-        answer_image = splitted_data[4] or ''
+        subject = splitted_data[3]
+        question_number = int(splitted_data[4])
 
-        if answer_image:
+        question = self.data_storage.get_question(subject, question_number)
+
+        if question["answer_image"]:
             return self.bot.send_photo(
                     chat,
-                    photo=answer_image,
-                    caption=f'''{answer}''',
+                    photo=question["answer_image"],
+                    caption=f'''{question["answer"]}''',
                     parse_mode='html'
                 )
 
-        return self.bot.send_message(chat, f'''{answer}''', parse_mode='html')
+        return self.bot.send_message(chat, f'''{question["answer"]}''', parse_mode='html')
 
 
     def get_total_rows_count(self, subject):
