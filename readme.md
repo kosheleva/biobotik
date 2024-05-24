@@ -6,6 +6,7 @@ A chat bot for telegram, which allows to do a self-testing of such subjects, as 
 
 - [Installation](#installation)
 - [Usage](#usage)
+- [Demo](#demo)
 - [Support](#support)
 - [Contributing](#contributing)
 
@@ -28,6 +29,12 @@ Available commands:
 - /question_latin
 - /question_biology
 - /contacts
+
+## Demo
+
+
+https://github.com/kosheleva/biobotik/assets/9432202/ea8fe546-bdbd-4676-a908-f0b6f96e8d86
+
 
 ## Support
 
